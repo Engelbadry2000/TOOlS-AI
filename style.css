@@ -1,0 +1,110 @@
+/* إعدادات عامة */
+body {
+    font-family: 'Arial', sans-serif; /* تحسين الخط */
+    margin: 0;
+    padding: 0;
+    background-color: rgb(30, 30, 30); /* خلفية داكنة */
+    color: rgb(255, 255, 255); /* لون النص */
+    overflow-x: hidden; /* منع التمرير الأفقي */
+}
+
+/* الرأس */
+header {
+    text-align: center;
+    padding: 20px;
+    background-color: rgb(34, 193, 195); /* لون RGB */
+}
+
+header h1 {
+    font-size: 2.5em;
+    margin: 0;
+}
+
+header p {
+    font-size: 1.2em;
+    margin: 10px 0;
+}
+
+/* المحتوى الرئيسي */
+main {
+    padding: 20px;
+    max-width: 1200px; /* الحد الأقصى لعرض المحتوى */
+    margin: 0 auto; /* توسيط المحتوى */
+}
+
+#tools {
+    background-color: rgb(50, 50, 50); /* لون خلفية الأدوات */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* ظل للصندوق */
+}
+
+#tools h2 {
+    font-size: 2em;
+    margin-bottom: 15px;
+}
+
+/* جدول الأدوات */
+#tool-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    overflow-y: auto; /* السماح بالتمرير العمودي */
+    max-height: 400px; /* تحديد الارتفاع الأقصى */
+    display: block; /* تحويل الجدول إلى كتلة */
+}
+
+#tool-table th, #tool-table td {
+    padding: 15px;
+    border: 1px solid rgb(100, 100, 100);
+    text-align: right; /* محاذاة النص إلى اليمين */
+    transition: background-color 0.3s; /* تأثير التغيير في الخلفية */
+}
+
+#tool-table th {
+    background-color: rgb(34, 193, 195); /* لون خلفية العناوين */
+    color: rgb(0, 0, 0); /* لون النص للعناوين */
+    font-size: 1.1em;
+}
+
+#tool-table tr:nth-child(even) {
+    background-color: rgb(70, 70, 70); /* خلفية الصفوف الزوجية */
+}
+
+#tool-table tr:hover {
+    background-color: rgb(253, 187, 45); /* تغيير لون الصف عند التمرير */
+    color: rgb(0, 0, 0); /* تغيير لون النص عند التمرير */
+}
+
+/* التذييل */
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: rgb(34, 193, 195); /* لون RGB */
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+/* استعلامات الوسائط لتحسين التنسيق على الشاشات الصغيرة */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2em; /* تقليل حجم عنوان الرأس */
+    }
+
+    header p {
+        font-size: 1em; /* تقليل حجم النص في الرأس */
+    }
+
+    #tools h2 {
+        font-size: 1.5em; /* تقليل حجم عنوان الأدوات */
+    }
+
+    #tool-table th, #tool-table td {
+        padding: 10px; /* تقليل حواف الخلايا */
+    }
+
+    #tool-table {
+        max-height: 300px; /* تقليل ارتفاع الجدول على الشاشات الصغيرة */
+    }
+}
