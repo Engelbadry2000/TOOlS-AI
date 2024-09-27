@@ -3,32 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>البدري للتكنولوجيا</title>
     <link rel="stylesheet" href="style.css">
+    <title>البدري للتكنولوجيا</title>
 </head>
 <body>
     <header>
         <h1>البدري للتكنولوجيا</h1>
-        <p>تجميع جميع أدوات الذكاء الاصطناعي المجانية</p>
     </header>
     <main>
+        <section id="search">
+            <h2>بحث عن أدوات الذكاء الاصطناعي</h2>
+            <input type="text" id="search-input" placeholder="أدخل مصطلح البحث" />
+            <button id="search-button">بحث</button>
+        </section>
+
         <section id="tools">
             <h2>أدوات الذكاء الاصطناعي</h2>
-            <table id="tool-table">
+            <table>
                 <thead>
                     <tr>
                         <th>اسم الأداة</th>
                         <th>الرابط</th>
                     </tr>
                 </thead>
-                <tbody id="tool-list">
-                    <!-- ستتم إضافة الروابط هنا بواسطة JavaScript -->
+                <tbody id="tools-table-body">
+                    <!-- سيتم إضافة الأدوات هنا -->
                 </tbody>
             </table>
         </section>
+
+        <div id="add-tool">
+            <h2>إضافة أداة ذكاء اصطناعي جديدة</h2>
+            <input type="text" id="tool-name" placeholder="اسم الأداة" />
+            <input type="url" id="tool-url" placeholder="رابط الأداة" />
+            <button id="add-tool-button">إضافة الأداة</button>
+        </div>
+
+        <section id="search-results">
+            <h2>نتائج البحث</h2>
+            <div id="search-results-container">
+                <!-- سيتم إضافة نتائج البحث هنا -->
+            </div>
+        </section>
     </main>
     <footer>
-        <p>جميع الحقوق محفوظة &copy; 2024 البدري للتكنولوجيا</p>
+        <p>جميع الحقوق محفوظة © 2024</p>
     </footer>
     <script src="script.js"></script>
 </body>
