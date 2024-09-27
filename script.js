@@ -1,73 +1,59 @@
-const apiKey = 'AIzaSyDskUYjH09dyzwv1d7H_SeTbH8_WmqXzuw';
-const searchEngineId = '86ab2ac97164c4956';
-const tools = [
-    { name: "Wolfram Alpha", url: "https://www.wolframalpha.com/" },
-    { name: "MATLAB Online", url: "https://matlab.mathworks.com/" },
-    { name: "Google Scholar", url: "https://scholar.google.com/" },
-    { name: "Coursera AI Courses", url: "https://www.coursera.org/courses?query=artificial%20intelligence" },
-    { name: "Khan Academy", url: "https://www.khanacademy.org/" },
-    { name: "Google Colab", url: "https://colab.research.google.com/" },
-    { name: "Overleaf", url: "https://www.overleaf.com/" },
-    { name: "IEEE Xplore", url: "https://ieeexplore.ieee.org/" },
-    { name: "TensorFlow", url: "https://www.tensorflow.org/" },
-    { name: "GitHub", url: "https://github.com/" },
-    { name: "Hugging Face", url: "https://huggingface.co/" },
-    { name: "DeepL Translator", url: "https://www.deepl.com/translator" },
-    { name: "Project Euler", url: "https://projecteuler.net/" },
-    { name: "Geogebra", url: "https://www.geogebra.org/" },
-    { name: "Desmos", url: "https://www.desmos.com/calculator" },
-];
+// العناصر
+const searchInput = document.getElementById('search-input');
+const searchButton = document.getElementById('search-button');
+const toolsList = document.getElementById('tools-list');
+const addToolButton = document.getElementById('add-button');
+const toolNameInput = document.getElementById('tool-name');
+const toolUrlInput = document.getElementById('tool-url');
+const searchResultsContainer = document.getElementById('search-results-container');
+const apiKey = 'AIzaSyDskUYjH09dyzwv1d7H_SeTbH8_WmqXzuw'; // استبدل بمفتاح API الخاص بك
+const searchEngineId = '86ab2ac97164c4956'; // استبدل بمعرف محرك البحث الخاص بك
 
-function displayTools() {
-    const toolsTableBody = document.getElementById('tools-table-body');
-    toolsTableBody.innerHTML = '';
-    tools.forEach(tool => {
-        const toolRow = document.createElement('tr');
-        toolRow.innerHTML = `
-            <td><a href="${tool.url}" target="_blank">${tool.name}</a></td>
-            <td><a href="${tool.url}" target="_blank">زيارة الأداة</a></td>
-        `;
-        toolsTableBody.appendChild(toolRow);
-    });
-}
-
-document.getElementById('add-tool-button').addEventListener('click', function() {
-    const toolName = document.getElementById('tool-name').value;
-    const toolUrl = document.getElementById('tool-url').value;
+// الوظيفة لإضافة أداة جديدة
+addToolButton.addEventListener('click', () => {
+    const toolName = toolNameInput.value.trim();
+    const toolUrl = toolUrlInput.value.trim();
 
     if (toolName && toolUrl) {
-        tools.push({ name: toolName, url: toolUrl });
-        displayTools(); // تحديث عرض الأدوات
-        document.getElementById('tool-name').value = ''; // مسح الحقول
-        document.getElementById('tool-url').value = '';
+        const newRow = document.createElement('tr');
+        newRow.innerHTML = `<td>${toolName}</td><td><a href="${toolUrl}" target="_blank">زيارة الموقع</a></td>`;
+        toolsList.appendChild(newRow);
+        toolNameInput.value = '';
+        toolUrlInput.value = '';
     } else {
-        alert("يرجى ملء جميع الحقول.");
+        alert('يرجى إدخال اسم الأداة ورابطها.');
     }
 });
 
-// دمج API للبحث الذاتي
-document.getElementById('search-button').addEventListener('click', async function() {
-    const query = document.getElementById('search-input').value;
-    const resultsContainer = document.getElementById('search-results-container');
-    resultsContainer.innerHTML = ''; // مسح النتائج السابقة
+// الوظيفة للبحث عن الأداة
+searchButton.addEventListener('click', () => {
+    const query = searchInput.value.trim();
+    searchResultsContainer.innerHTML = ''; // مسح نتائج البحث السابقة
 
-    const response = await fetch(`https://www.googleapis.com/customsearch/v1?key=${apiKey}&cx=${searchEngineId}&q=${query}`);
-    const data = await response.json();
-
-    if (data.items) {
-        data.items.forEach(item => {
-            const resultItem = document.createElement('div');
-            resultItem.className = 'result-item';
-            resultItem.innerHTML = `
-                <a href="${item.link}" target="_blank">${item.title}</a>
-                <p>${item.snippet}</p>
-                <img src="${item.pagemap?.cse_image ? item.pagemap.cse_image[0].src : ''}" alt="Image" onerror="this.style.display='none'">
-            `;
-            resultsContainer.appendChild(resultItem);
-        });
+    if (query) {
+        fetch(`https://www.googleapis.com/customsearch/v1?key=${apiKey}&cx=${searchEngineId}&q=${query}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.items) {
+                    data.items.forEach(item => {
+                        const resultItem = document.createElement('div');
+                        resultItem.classList.add('result-item');
+                        resultItem.innerHTML = `
+                            <h3>${item.title}</h3>
+                            <a href="${item.link}" target="_blank">زيارة الموقع</a>
+                            <img src="${item.pagemap?.cse_image ? item.pagemap.cse_image[0].src : ''}" alt="${item.title}">
+                        `;
+                        searchResultsContainer.appendChild(resultItem);
+                    });
+                } else {
+                    searchResultsContainer.innerHTML = '<p>لا توجد نتائج مطابقة.</p>';
+                }
+            })
+            .catch(error => {
+                console.error('حدث خطأ:', error);
+                searchResultsContainer.innerHTML = '<p>حدث خطأ أثناء البحث. حاول مرة أخرى.</p>';
+            });
     } else {
-        resultsContainer.innerHTML = '<p>لا توجد نتائج.</p>';
+        alert('يرجى إدخال استعلام البحث.');
     }
 });
-
-displayTools(); // عرض الأدوات عند تحميل الصفحة

@@ -3,18 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
     <title>البدري للتكنولوجيا</title>
+    <link rel="stylesheet" href="style.css"> <!-- ربط ملف CSS -->
 </head>
 <body>
     <header>
         <h1>البدري للتكنولوجيا</h1>
     </header>
+
     <main>
         <section id="search">
-            <h2>بحث عن أدوات الذكاء الاصطناعي</h2>
-            <input type="text" id="search-input" placeholder="أدخل مصطلح البحث" />
+            <h2>البحث عن أداة ذكاء اصطناعي</h2>
+            <input type="text" id="search-input" placeholder="أدخل اسم الأداة...">
             <button id="search-button">بحث</button>
+        </section>
+
+        <section id="search-results">
+            <h2>نتائج البحث</h2>
+            <div id="search-results-container"></div>
         </section>
 
         <section id="tools">
@@ -26,29 +32,38 @@
                         <th>الرابط</th>
                     </tr>
                 </thead>
-                <tbody id="tools-table-body">
-                    <!-- سيتم إضافة الأدوات هنا -->
+                <tbody id="tools-list">
+                    <tr><td>Wolfram Alpha</td><td><a href="https://www.wolframalpha.com/" target="_blank">زيارة الموقع</a></td></tr>
+                    <tr><td>MATLAB Online</td><td><a href="https://matlab.mathworks.com/" target="_blank">زيارة الموقع</a></td></tr>
+                    <tr><td>Google Scholar</td><td><a href="https://scholar.google.com/" target="_blank">زيارة الموقع</a></td></tr>
+                    <tr><td>Coursera AI Courses</td><td><a href="https://www.coursera.org/courses?query=artificial%20intelligence" target="_blank">زيارة الموقع</a></td></tr>
+                    <tr><td>Khan Academy</td><td><a href="https://www.khanacademy.org/" target="_blank">زيارة الموقع</a></td></tr>
+                    <tr><td>Google Colab</td><td><a href="https://colab.research.google.com/" target="_blank">زيارة الموقع</a></td></tr>
+                    <tr><td>Overleaf</td><td><a href="https://www.overleaf.com/" target="_blank">زيارة الموقع</a></td></tr>
+                    <tr><td>IEEE Xplore</td><td><a href="https://ieeexplore.ieee.org/" target="_blank">زيارة الموقع</a></td></tr>
+                    <tr><td>TensorFlow</td><td><a href="https://www.tensorflow.org/" target="_blank">زيارة الموقع</a></td></tr>
+                    <tr><td>GitHub</td><td><a href="https://github.com/" target="_blank">زيارة الموقع</a></td></tr>
+                    <tr><td>Hugging Face</td><td><a href="https://huggingface.co/" target="_blank">زيارة الموقع</a></td></tr>
+                    <tr><td>DeepL Translator</td><td><a href="https://www.deepl.com/translator" target="_blank">زيارة الموقع</a></td></tr>
+                    <tr><td>Project Euler</td><td><a href="https://projecteuler.net/" target="_blank">زيارة الموقع</a></td></tr>
+                    <tr><td>Geogebra</td><td><a href="https://www.geogebra.org/" target="_blank">زيارة الموقع</a></td></tr>
+                    <tr><td>Desmos</td><td><a href="https://www.desmos.com/calculator" target="_blank">زيارة الموقع</a></td></tr>
                 </tbody>
             </table>
         </section>
 
-        <div id="add-tool">
-            <h2>إضافة أداة ذكاء اصطناعي جديدة</h2>
-            <input type="text" id="tool-name" placeholder="اسم الأداة" />
-            <input type="url" id="tool-url" placeholder="رابط الأداة" />
-            <button id="add-tool-button">إضافة الأداة</button>
-        </div>
-
-        <section id="search-results">
-            <h2>نتائج البحث</h2>
-            <div id="search-results-container">
-                <!-- سيتم إضافة نتائج البحث هنا -->
-            </div>
+        <section id="add-tool">
+            <h2>إضافة أداة جديدة</h2>
+            <input type="text" id="tool-name" placeholder="اسم الأداة">
+            <input type="text" id="tool-url" placeholder="رابط الأداة">
+            <button id="add-button">إضافة</button>
         </section>
     </main>
+
     <footer>
-        <p>جميع الحقوق محفوظة © 2024</p>
+        <p>&copy; 2024 البدري للتكنولوجيا. جميع الحقوق محفوظة.</p>
     </footer>
-    <script src="script.js"></script>
+
+    <script src="script.js"></script> <!-- ربط ملف JavaScript -->
 </body>
 </html>
